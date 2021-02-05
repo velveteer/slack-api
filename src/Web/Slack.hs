@@ -140,15 +140,13 @@ getNextEvent h@SlackHandle{..} = do
     case eitherDecode raw of
         Left e -> do
             putStrLn $ unlines
-                [ show raw
-                , e
+                [ e
                 , "Please report this failure to the github issue tracker"
                 ]
             getNextEvent h
         Right event@(UnknownEvent val) -> do
             putStrLn $ unlines
-                [ show val
-                , "Failed to parse to a known event"
+                [ "Failed to parse to a known event"
                 , "Please report this failure to the github issue tracker"
                 ]
             return event
